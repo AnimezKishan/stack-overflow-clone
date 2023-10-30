@@ -1,0 +1,29 @@
+.home-container-1{
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0% auto;
+}
+
+.home-container-2{
+    
+    width: calc(100% - 164px);
+    border: 1px solid #d6d9dc;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+@media (max-width:800px){
+    .home-container-1{
+        display: flex;
+        flex-direction: column;
+        min-height: unset;
+    }
+
+    .home-container-2{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+}
