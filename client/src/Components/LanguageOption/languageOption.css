@@ -1,0 +1,10 @@
+select{
+    padding: 5px 0;
+    font-weight: 600;
+}
+
+@media (min-width: 1100px){
+    select{
+        margin-left: 1vw;
+    }
+}

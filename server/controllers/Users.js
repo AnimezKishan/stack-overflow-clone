@@ -7,7 +7,7 @@ export const getAllUsers = async(req, res) => {
         const allUserDetails = []
 
         allUsers.forEach(users => {
-            allUserDetails.push({ _id: users._id, name: users.name, about: users.about, tags:users.tags, joinedOn: users.joinedOn })
+            allUserDetails.push({ _id: users._id, name: users.name, about: users.about, tags:users.tags, joinedOn: users.joinedOn , questionAnswered: users?.questionAnswered, questionQouta: users?.questionQouta})
         })
         res.status(200).json(allUserDetails);
     } 
@@ -27,6 +27,28 @@ export const updateProfile = async(req, res) => {
     try {
         const updatedProfile = await user.findByIdAndUpdate(_id, { $set:{'name': name, 'about': about, 'tags': tags }}, { new: true })
         res.status(200).json(updatedProfile);
+    } 
+    catch (error) {
+        res.status(405).json({ message: error.message });
+    }
+}
+
+export const addPro = async(req, res) => {
+    const { userId } = req.body;
+    try {
+        await user.findByIdAndUpdate(userId, {$set: {'questionQouta': 30}});
+        res.status(200).json("Pro Subscription Added!");
+    } 
+    catch (error) {
+        res.status(405).json({ message: error.message });
+    }
+}
+
+export const addAce = async(req, res) => {
+    const { userId } = req.body;
+    try {
+        await user.findByIdAndUpdate(userId, {$set: {'questionQouta': 150}});
+        res.status(200).json("Ace Subscription Added!");
     } 
     catch (error) {
         res.status(405).json({ message: error.message });

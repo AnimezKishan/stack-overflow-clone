@@ -3,6 +3,7 @@ import { Link, useParams, useNavigate, useLocation } from 'react-router-dom'
 import moment from 'moment'
 import copy from 'copy-to-clipboard'
 import { useSelector, useDispatch } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 
 import upvote from '../../assets/sort-up.svg'
 import downvote from '../../assets/sort-down.svg'
@@ -10,6 +11,7 @@ import './QuestionDetails.css'
 import Avatar from '../../Components/Avatar/Avatar'
 import DisplayAnswer from './DisplayAnswer'
 import { deleteQuestion, postAnswer, voteQuestion } from '../../actions/question'
+import Video from '../../Components/Video/Video'
 
 
 const QuestionDetails = () => {
@@ -17,13 +19,14 @@ const QuestionDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const {t} = useTranslation();
     
     const questionsList = useSelector(state => state.questionReducer)
 
     const [Answer, setAnswer] = useState('')
     const User = useSelector((state) => (state.currentUserReducer))
     const location = useLocation()
-    const url = `http://localhost:3000${location.pathname}`
+    const url = `https://stack-overflow-clone-kishan.netlify.app${location.pathname}`
 
     const handlePostAnswer = (detail, answerLength) => {
         detail.preventDefault()
@@ -128,7 +131,7 @@ const QuestionDetails = () => {
     <div className='question-details-page'>
         {
             questionsList.data === null ?
-            <h1>Loading...</h1>:
+            <h1>{t('loading')}</h1>:
             <>
                 {
                     questionsList.data.filter(question => question._id === id).map(question => (
@@ -150,18 +153,30 @@ const QuestionDetails = () => {
                                                 ))
                                             }
                                         </div>
+                                        {
+                                            question.videoFile ? (
+                                                <div className="question-file" style={{}}>
+                                                    {
+                                                        question.videoFile.slice(-4) === '.mp4' ? (
+                                                            <Video videoSrc={question.videoFile}></Video>
+                                                          ):
+                                                          <img style={{width: "100%", height: "100%", objectFit: "contain"}} src={question.videoFile} alt="" />
+                                                    }
+                                                </div>
+                                            ) : <></>
+                                        }
                                         <div className='question-actions-user'>
                                             <div>
-                                                <button type='button' onClick={handleShare}>Share</button>
+                                                <button type='button' onClick={handleShare}>{t('share')}</button>
                                                 {
                                                     User?.result?._id === question?.userId && (
-                                                        <button type='button' onClick={handleDelete}>Delete</button>
+                                                        <button type='button' onClick={handleDelete}>{t('delete')}</button>
                                                     )
                                                 }
                                                 
                                             </div>
                                             <div>
-                                                <p>asked {moment(question.askedOn).fromNow()}</p>
+                                                <p>{t('asked')} {moment(question.askedOn).fromNow()}</p>
                                                 <Link to={`/User/${question.userId}`} className='user-link' style={{color:'#0086d8'}}>
                                                     <Avatar backgroundColor='orange' px='8px' py='5px' borderRadius="10px">{question.userPosted.charAt(0).toUpperCase()}</Avatar>
                                                     <div>
@@ -178,28 +193,28 @@ const QuestionDetails = () => {
                                     <section>
                                         {
                                             (question.noOfAnswers > 1) ? 
-                                            <h3>{question.noOfAnswers} answers</h3> : 
-                                            <h3>{question.noOfAnswers} answer</h3>
+                                            <h3>{question.noOfAnswers} {t('answers')}</h3> : 
+                                            <h3>{question.noOfAnswers} {t('answer')}</h3>
                                         }
                                         <DisplayAnswer key={question._id} question={question} handleShare={handleShare}/>
                                     </section>
                                 )
                             }
                             <section className='post-ans-container'>
-                                <h3>Your Answer</h3>
+                                <h3>{t('yourA')}</h3>
                                 <form onSubmit={(detail) => {handlePostAnswer(detail, question.answer.length)}}>
                                     <textarea name="" id="" cols="30" rows="10" onChange={detail => setAnswer(detail.target.value)}></textarea><br />
-                                    <input type="submit" className='post-ans-btn' value='Post Your Answer'/>
+                                    <input type="submit" className='post-ans-btn' value={t('postA')}/>
                                 </form>
                                 <p>
-                                    Browse other Question tagged
+                                    {t('browseTag')}
                                     {
                                         question.questionTags.map((tag) => (
                                             <Link to='/Tags' key={tag} className='ans-tags'>{tag}</Link>
                                         ))
                                     }
-                                    or
-                                    <Link to='/AskQuestion' style={{textDecoration: "none", color: "#009dff"}}> ask your own question.</Link>
+                                    {t('or')}
+                                    <Link to='/AskQuestion' style={{textDecoration: "none", color: "#009dff"}}> {t('askOwn')}</Link>
                                 </p>
                             </section>
                         </div>

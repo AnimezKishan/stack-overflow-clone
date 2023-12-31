@@ -123,8 +123,18 @@
     white-space: pre-line;
 }
 
+.question-file{
+    width: "100%"; 
+    height: "50vh"; 
+    margin-bottom: "4vh";
+}
+
 @media (max-width:800px){
     .question-details-page{
         width:100%;
+    }
+
+    .question-file{
+        height: 30vh;
     }
 }

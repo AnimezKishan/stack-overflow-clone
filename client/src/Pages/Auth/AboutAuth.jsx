@@ -1,15 +1,19 @@
 import React from 'react'
+import {useTranslation} from 'react-i18next'
 
 const AboutAuth = () => {
+
+  const {t} = useTranslation();
+
   return (
     <div className='auth-container-1'>
-        <h1>Join the Stack Overflow community</h1>
-        <p>Get unstuck — ask a question</p>
-        <p>Unlock new privileges like voting and commenting</p>
-        <p>Save your favorite tags, filters, and jobs</p>
-        <p>Earn reputation and badges</p>
-        <p style={{color: "#666767", fontSize: "13px"}}>Collaborate and share knowledge with a private group for</p>
-        <a href="https://stackoverflow.com/teams?utm_source=so-owned&utm_medium=product&utm_campaign=free-50&utm_content=public-sign-up" style={{color: "#007ac6", fontSize: "13px", textDecoration:"none"}}>Get Stack Overflow for Teams free for up to 50 users.</a>
+        <h1>{t('aboutD1')}</h1>
+        <p>{t('aboutD2')}</p>
+        <p>{t('aboutD3')}</p>
+        <p>{t('aboutD4')}</p>
+        <p>{t('aboutD5')}</p>
+        <p style={{color: "#666767", fontSize: "13px"}}>{t('aboutD6')}</p>
+        <a href="https://stackoverflow.com/teams?utm_source=so-owned&utm_medium=product&utm_campaign=free-50&utm_content=public-sign-up" style={{color: "#007ac6", fontSize: "13px", textDecoration:"none"}}>{t('aboutD7')}</a>
     </div>
   )
 }

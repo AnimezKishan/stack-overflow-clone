@@ -1,0 +1,17 @@
+.room-container{
+    padding: 0;
+}
+
+@media (max-width: 800px) {
+    .room-container{
+        height: 60vh;
+    }
+
+    .room-container .main{
+        min-height: 100%;
+    }
+
+    .main form{
+        width: 75%;
+    }
+}

@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import questions from '../models/questions.js';
+import users from '../models/auth.js'
 
 export const postAnswer = async(req, res) =>{
     const { id: _id } = req.params;
@@ -10,6 +11,7 @@ export const postAnswer = async(req, res) =>{
     }
 
     updatedNoOfQuestions(_id, noOfAnswers)
+    updateUser(userId);
 
     try{
         const updatedQuestion = await questions.findByIdAndUpdate(_id, { $addToSet: {'answer': [{ answerBody, userAnswered, userId }]}})
@@ -17,6 +19,16 @@ export const postAnswer = async(req, res) =>{
     }
     catch(error){
         res.status(400).json('error in updating...')
+    }
+}
+
+const updateUser = async(userId) => {
+    try {
+        const existingUser = await users.findById(userId);
+        await users.findByIdAndUpdate(userId, {$set: {'questionAnswered': existingUser.questionAnswered + 1}});
+    } 
+    catch (error) {
+        console.log(error)    
     }
 }
 

@@ -1,16 +1,31 @@
 import questions from "../models/questions.js"
+import users from '../models/auth.js'
 import mongoose from "mongoose"
 
 export const AskQuestion = async (req, res) => {
     const postQuestionData = req.body;
+    const { userId } = req.body;
+
+    updateUser(userId)
+
     const postQuestion = new questions(postQuestionData);
     try{
         await postQuestion.save();
-        res.status(200).json("Posted a question successfully");
+        res.status(200).json(postQuestion);
     }
     catch(error){
         console.log(error);
         res.status(409).json("Couldn't post a new question")
+    }
+}
+
+const updateUser = async(userId) => {
+    try {
+        const existingUser = await users.findById(userId);
+        await users.findByIdAndUpdate(userId, {$set: {'questionQouta': existingUser.questionQouta - 1}});
+    } 
+    catch (error) {
+        console.log(error)    
     }
 }
 

@@ -79,6 +79,66 @@
     cursor: pointer;
 }
 
+.loginInfo-table {
+    width: 80%;
+    height: 20vh;
+    overflow: scroll;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    
+  }
+  
+td, th {
+    background-color: #fff;
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.badge-main{
+    display: flex;
+    justify-content: flex-start;
+    gap: 3vw;
+    margin-top: 1.2vw;
+}
+
+.badge{
+    text-align: center;
+    padding: 0 10px 5px 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    font-family: serif;
+    cursor: pointer;
+}
+
+.badge h2, .badge p{
+    margin: 0;
+}
+
+.bronze{
+    color: #b08d57;
+    border: 2px solid #b08d57;
+}
+
+.silver{
+    color: #c0c0c0;
+    border: 2px solid #c0c0c0;
+}
+
+.gold{
+    color: #f0cc03cb;
+    border: 2px solid #eecb03b9;
+}
 
 @media (max-width:750px){
     .edit-profile-form label input, .edit-profile-form label textarea {

@@ -6,6 +6,7 @@ import Navbar from './Components/Navbar/Navbar';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { fetchAllQuestions } from './actions/question';
 import { fetchAllUsers } from './actions/users';
+import { fetchAllPosts } from './actions/post';
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
   useEffect(() => {
     dispatch(fetchAllQuestions())
     dispatch(fetchAllUsers())
+    dispatch(fetchAllPosts())
   }, [dispatch])
   
   return (

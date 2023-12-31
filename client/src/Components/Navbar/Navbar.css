@@ -89,10 +89,6 @@
     #menuToggle{
         display: none;
     }
-
-    .search-form{
-        display: none;
-    }
     
     .nav{
         display: flex;

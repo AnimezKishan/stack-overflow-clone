@@ -4,17 +4,22 @@ import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCalendarPlus, faPen } from '@fortawesome/free-solid-svg-icons'
+import { useTranslation } from 'react-i18next'
 
 import './UserProfile.css'
 import LeftSidebar from '../../Components/LeftSidebar/LeftSidebar'
 import Avatar from '../../Components/Avatar/Avatar'
 import EditProfileForm from './EditProfileForm'
 import ProfileBio from './ProfileBio'
+import LoginInfo from './LoginInfo'
 
 const UserProfile = () => {
   
   const { id } = useParams();
-  const users = useSelector((state) => state.usersReducer)
+  const users = useSelector((state) => state.usersReducer);
+  const questions = useSelector((state) => state.questionReducer);
+  const currentUserQuestions = questions.data.filter((question) => question.userId === id)
+  const{t} = useTranslation();
 
   const currentProfile = users.filter((user) => user._id === id)[0]
   const currentUser = useSelector((state) => state.currentUserReducer)
@@ -35,13 +40,13 @@ const UserProfile = () => {
                         </Avatar>
                         <div className='user-name'>
                             <h1>{currentProfile?.name}</h1>
-                            <p><FontAwesomeIcon icon={faCalendarPlus}/> Joined {moment(currentProfile?.joinedOn).fromNow()}</p>
+                            <p><FontAwesomeIcon icon={faCalendarPlus}/> {t('joined')} {moment(currentProfile?.joinedOn).fromNow()}</p>
                         </div>
                     </div>
                     {
                         currentUser?.result._id === id && (
                             <button type='button' onClick={() => setSwitch(true)} className='edit-profile-btn'>
-                                <FontAwesomeIcon icon={faPen} /> Edit Profile
+                                <FontAwesomeIcon icon={faPen} /> {t('editP')}
                             </button>
                         )
                     }
@@ -51,10 +56,15 @@ const UserProfile = () => {
                         Switch ? (
                             <EditProfileForm currentUser={currentUser} setSwitch={setSwitch}/>
                         ) : (
-                            <ProfileBio currentProfile={currentProfile}/>
+                            <ProfileBio currentProfile={currentProfile} currentUserQuestions={currentUserQuestions}/>
                         )
                     }
                 </>
+                {
+                    currentUser?.result._id === id && !Switch && (
+                        <LoginInfo currentUser={currentUser} />
+                    )
+                }
             </section>
         </div>
     </div>

@@ -1,4 +1,5 @@
 import * as api from '../api'
+import { setCurrentUser } from './currentUser'
 
 export const fetchAllUsers = () => async(dispatch) => {
     try {
@@ -17,5 +18,28 @@ export const updateProfile = (id, updateData) => async(dispatch) => {
     } 
     catch (error) {
         console.log(error)
+    }
+}
+
+export const addPro = ({userId}, navigate) => async(dispatch) => {
+    try {
+        await api.addPro(userId);
+        dispatch({ type: 'LOGOUT' });
+        navigate('/')
+        dispatch(setCurrentUser(null))
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
+export const addAce = ({userId}, navigate) => async(dispatch) => {
+    try {
+        await api.addAce(userId);
+        dispatch({ type: 'LOGOUT' });
+        navigate('/')
+        dispatch(setCurrentUser(null))
+    } catch (error) {
+        console.log(error);
     }
 }

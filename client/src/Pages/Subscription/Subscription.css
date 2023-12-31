@@ -1,0 +1,75 @@
+.subscription-main{
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: #f1f2f3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30vh;
+}
+
+.pro, .ace{
+    width: 20%;
+    height: 40%;
+    padding: 10vh;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgb(0 0 0 / 5%), 0 20px 48px rgb(0 0 0 / 5%), 0 1px 4px rgb(0 0 0 / 10%);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.pro button, .ace button{
+    padding: 10px 20px;
+    margin-top: 5vh;
+    background-color: #009dff;
+    border: solid 1px #009dff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.subscription-main h4{
+    font-size: 20px;
+    letter-spacing: 0.5px;
+    transition: all ease 0.2s;
+}
+
+.subscription-main h4:hover{
+    scale: 1.5;
+}
+
+.pro a, .ace a{
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+}
+
+.pro p, .ace p{
+    font-size: 14px;
+    text-align: center;
+    color: #978f8f;
+
+}
+
+.pro button:hover, .ace button:hover{
+    background-color: #0967a1;
+    scale: 1.1;
+}
+
+@media (max-width: 800px){
+    .subscription-main{
+        padding-top: 7.5vh;
+        flex-direction: column;
+        gap: 10vh;
+    }
+
+    .pro, .ace{
+        width: 75%;
+        height: 40%;
+        padding: 3vh;
+    }
+}

@@ -1,4 +1,5 @@
 import React from 'react'
+import {useTranslation} from "react-i18next"
 
 import LeftSidebar from '../../Components/LeftSidebar/LeftSidebar'
 import TagsList from './TagsList'
@@ -6,55 +7,57 @@ import './Tags.css'
 
 const Tags = () => {
 
+  const {t} = useTranslation();
+
   const tagsList = [{
       id: 1,
-      tagName: "javascript",
-      tagDesc: "For questions regarding programming in ECMAScript (JavaScript/JS) and its various dialects/implementations (excluding ActionScript). Please include all relevant tags on your question;",
+      tagName: `${t('javascript')}`,
+      tagDesc: `${t('javascriptD')}`
   },{
       id: 2,
-      tagName: "python",
-      tagDesc: "Python is a multi-paradigm, dynamically typed, multipurpose programming language. It is designed to be quick to learn, understand, and use, and enforces a clean and uniform syntax."
+      tagName: `${t('python')}`,
+      tagDesc: `${t('pythonD')}`
   },{
       id: 3,
-      tagName: "c#",
-      tagDesc: "C# (pronounced 'see sharp') is a high level, statically typed, multi-paradigm programming language developed by Microsoft"
+      tagName: `${t('c#')}`,
+      tagDesc: `${t('c#D')}`,
   },{
       id: 4,
-      tagName: "java",
-      tagDesc: "Java is a high-level object oriented programming language. Use this tag when you're having problems using or understanding the language itself. "
+      tagName: `${t('java')}`,
+      tagDesc: `${t('javaD')}`
   },{
       id: 5,
-      tagName: "php",
-      tagDesc: "PHP is a widely used, open source, general-purpose, multi-paradigm, dynamically typed and interpreted scripting language originally designed for server-side web development"
+      tagName: `${t('php')}`,
+      tagDesc: `${t('phpD')}`
   },{
       id: 6,
-      tagName: "html",
-      tagDesc: "HTML (HyperText Markup Language) is the markup language for creating web pages and other information to be displayed in a web browser."
+      tagName: `${t('html')}`,
+      tagDesc: `${t('htmlD')}`
   },{
       id: 7,
-      tagName: "android",
-      tagDesc: "Android is Google's mobile operating system, used for programming or developing digital devices (Smartphones, Tablets, Automobiles, TVs, Wear, Glass, IoT)."
+      tagName: `${t('android')}`,
+      tagDesc: `${t('androidD')}`
   },{
       id: 8,
-      tagName: "css",
-      tagDesc: "CSS is a representation style sheet language used for describing the look and formatting of HTML, XML documents and SVG elements including colors, layout, fonts, and animations"
+      tagName: `${t('css')}`,
+      tagDesc: `${t('cssD')}`,
   },{
       id: 9,
-      tagName: "Reactjs",
-      tagDesc: "React is a JavaScript library for building user interfaces. It uses a declarative, component-based paradigm and aims to be both efficient and flexible."
+      tagName: `${t('reactjs')}`,
+      tagDesc: `${t('reactjsD')}`
   },{
       id: 10,
-      tagName: "node.js",
-      tagDesc: "Node.js is an event-based, non-blocking, asynchronous I/O runtime that uses Google's V8 JavaScript engine and libuv library. "
+      tagName: `${t('nodejs')}`,
+      tagDesc: `${t('nodejsD')}`
   }]
 
   return (
     <div className='home-container-1'>
       <LeftSidebar/>
       <div className="home-container-2">
-        <h1 className='tags-h1'>Tags</h1>
-        <p className='tags-p'>A tag is a keyword or label that categorizes your question with other, similar questions.</p>
-        <p className='tags-p'>Using the right tags makes it easier for others to find and answer your question.</p>
+        <h1 className='tags-h1'>{t('tags')}</h1>
+        <p className='tags-p'>{t('tagsD1')}</p>
+        <p className='tags-p'>{t('tagsD2')}</p>
         <div className="tags-list-container">
           {
             tagsList.map((tag) => (
