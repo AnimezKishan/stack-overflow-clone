@@ -157,7 +157,7 @@ const QuestionDetails = () => {
                                             question.videoFile ? (
                                                 <div className="question-file" style={{}}>
                                                     {
-                                                        question.videoFile.slice(-4) === '.mp4' ? (
+                                                        question.videoFile.includes('.mp4') === true ? (
                                                             <Video videoSrc={question.videoFile}></Video>
                                                           ):
                                                           <img style={{width: "100%", height: "100%", objectFit: "contain"}} src={question.videoFile} alt="" />

@@ -18,19 +18,4 @@ router.patch('/update/:id', auth, updateProfile)
 router.patch('/addSub/pro', addPro);
 router.patch('/addSub/ace', addAce);
 
-const storage = multer.diskStorage({
-    destination: function(req, file, cb){
-        return cb(null, "./public/media")
-    },
-    filename: function(req, file, cb){
-        return cb(null, `${Date.now()}_${file.originalname}`);
-    }
-})
-
-const upload = multer({storage})
-
-router.post('/upload', upload.single('file'), (req, res) => {
-    res.status(200).json(req.file.path);
-});
-
 export default router

@@ -10,8 +10,8 @@ const Meeting = () => {
   const {t} = useTranslation();
 
   let myMeeting = async(element) => {
-    const appID = 1807172554;
-    const serverSecret = "53652e90a9570a9e1c9cf62dfa300dc4";
+    const appID = 123 /* YOUR ZEGOCLOUD APPID*/ ;
+    const serverSecret = "YOUR ZEGOCLOUD SERVER-SECRET";
     const kitToken =  ZegoUIKitPrebuilt.generateKitTokenForTest(appID, serverSecret, roomID,  Date.now().toString(),  "User");
     const zp = ZegoUIKitPrebuilt.create(kitToken);
 

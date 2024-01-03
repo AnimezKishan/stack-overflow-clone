@@ -19,7 +19,7 @@ const Post = ({post}) => {
       <p><i>{post.postTitle}</i></p>
       <div className="post-file">
         {
-          post.postFile.slice(-4) === '.mp4' ? (
+          post.postFile.includes('.mp4') === true ? (
             <Video videoSrc={post.postFile}></Video>
           ):
           <img src={post.postFile} alt="" />

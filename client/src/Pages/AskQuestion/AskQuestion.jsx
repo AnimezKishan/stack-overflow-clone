@@ -59,8 +59,8 @@ const AskQuestion = () => {
             <label htmlFor="ask-ques-body">
               <h4>{t('body')}</h4>
               <p>{t('bodyD')}</p>
-              {/* <RichTextEditor setQuestionBody={setQuestionBody}/> */}
-              <textarea id="ask-ques-body" onChange={(detail) => {setQuestionBody(detail.target.value)}} cols="30" rows="10" onKeyPress={handleEnter}></textarea>
+              { <RichTextEditor setQuestionBody={setQuestionBody}/> }
+              {/* <textarea id="ask-ques-body" onChange={(detail) => {setQuestionBody(detail.target.value)}} cols="30" rows="10" onKeyPress={handleEnter}></textarea> */}
             </label>
 
             <Upload setPostFile={setVideoFile}/>
