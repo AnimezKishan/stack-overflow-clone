@@ -15,6 +15,7 @@ const AskQuestion = () => {
   const [questionBody, setQuestionBody] = useState('')
   const [questionTags, setQuestionTags] = useState('')
   const [videoFile, setVideoFile] = useState('')
+  const [cssStyle, setcssStyle] = useState()
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const AskQuestion = () => {
     }
     else{
       try {
-        dispatch(askQuestion({ questionTitle, questionBody, questionTags, userPosted: User.result.name, userId: User.result._id, videoFile }, navigate))
+        dispatch(askQuestion({ questionTitle, questionBody,  questionTags, userPosted: User.result.name, userId: User.result._id, videoFile, bodyCSS: cssStyle }, navigate))
       } catch (error) {
         console.log(error);
         alert('Login first!');
@@ -59,7 +60,7 @@ const AskQuestion = () => {
             <label htmlFor="ask-ques-body">
               <h4>{t('body')}</h4>
               <p>{t('bodyD')}</p>
-              { <RichTextEditor setQuestionBody={setQuestionBody}/> }
+              { <RichTextEditor setQuestionBody={setQuestionBody} setcssStyle={setcssStyle}/> }
               {/* <textarea id="ask-ques-body" onChange={(detail) => {setQuestionBody(detail.target.value)}} cols="30" rows="10" onKeyPress={handleEnter}></textarea> */}
             </label>
 

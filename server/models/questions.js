@@ -10,6 +10,7 @@ const QuestionSchema = mongoose.Schema({
     userPosted: { type: String, required: "Question must have an author"},
     userId: { type: String },
     videoFile: {type: String },
+    bodyCSS: {type: [], default: []},
     askedOn: { type: Date, default: Date.now},
     answer: [{
         answerBody: String,

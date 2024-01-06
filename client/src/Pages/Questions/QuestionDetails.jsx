@@ -145,7 +145,18 @@ const QuestionDetails = () => {
                                         <img src={downvote} alt="downvote" width='18' className='votes-icon' on onClick={handleDownVote}/>
                                     </div>
                                     <div style={{width: "100%"}}>
-                                        <p className='question-body'>{question.questionBody}</p>
+                                        {
+                                            question.bodyCSS[0] ? 
+                                            <p style={{fontSize: question.bodyCSS[0].fontSize,
+                                            color: question.bodyCSS[0].color,
+                                            fontStyle: question.bodyCSS[0].fontStyle,
+                                            fontWeight: question.bodyCSS[0].fontWeight,
+                                            textAlign: question.bodyCSS[0].textAlign,
+                                            textDecoration: question.bodyCSS[0].textDecoration,
+                                            textTransform: question.bodyCSS[0].textTransform
+                                            }} className='question-body'>{question.questionBody}</p> 
+                                            : <p className='question-body'>{question.questionBody}</p>
+                                        }
                                         <div className='question-details-tags'>
                                             {
                                                 question.questionTags.map((tag) => (

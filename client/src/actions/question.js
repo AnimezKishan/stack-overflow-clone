@@ -3,12 +3,13 @@ import logo from '../assets/icon.png'
 
 export const askQuestion = (questionData, navigate) => async (dispatch) => {
     try{
+        console.log(questionData);
         const { data } = await api.postQuestion(questionData);
 
         new Notification("New Question", {
             body: `User '${data.userPosted}' has asked a new question!`,
             icon: logo,
-            onclick: window.location = `http://localhost:3000/Questions/${data._id}`
+            onclick: window.location = `https://stack-overflow-clone-kishan.netlify.app/Questions/${data._id}`
         })
 
         dispatch({ type: "POST_QUESTION", payload: data})
@@ -60,7 +61,7 @@ export const postAnswer = (answerData) => async(dispatch) => {
         new Notification("New Answer", {
             body: `User '${userAnswered}' has answered to question '${data.questionTitle}'`,
             icon: logo,
-            onclick: window.location = `http://localhost:3000/Questions/${data._id}`
+            onclick: window.location = `https://stack-overflow-clone-kishan.netlify.app/Questions/${data._id}`
         })
 
         dispatch({ type: 'POST_ANSWER', payload: data })

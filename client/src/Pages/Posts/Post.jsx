@@ -17,14 +17,20 @@ const Post = ({post}) => {
         <p className='display-time'>post {moment(post.postedOn).fromNow()}</p>
       </div>
       <p><i>{post.postTitle}</i></p>
-      <div className="post-file">
+      
         {
-          post.postFile.includes('.mp4') === true ? (
-            <Video videoSrc={post.postFile}></Video>
-          ):
-          <img src={post.postFile} alt="" />
+          post.postFile ? (
+          <div className="post-file">
+            {
+            post.postFile.includes('.mp4') === true ? (
+              <Video videoSrc={post.postFile}></Video>
+            ):
+            <img src={post.postFile} alt="" />
+            }
+          </div>
+          ) : <></>
         }
-      </div>
+      
     </div>
   )
 }

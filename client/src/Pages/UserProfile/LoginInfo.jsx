@@ -1,6 +1,7 @@
 import React from 'react'
 import moment from 'moment';
 import {useTranslation} from 'react-i18next'
+import { Link } from 'react-router-dom'
 
 const LoginInfo = ({currentUser}) => {
 
@@ -42,6 +43,16 @@ const LoginInfo = ({currentUser}) => {
         <h4>{t('qq')}</h4>
         <p>{currentUser?.result?.questionQouta}</p>
       </div>
+      <Link to='/Subscription'><button style={{padding: "10px 15px",
+        border: "0",
+        borderRadius: "4px",
+        backgroundColor: "#009dff",
+        color: "white",
+        textDecoration: "none",
+        transition: "0.3s",
+        cursor: "pointer"}} className='sub-btn'>Get Subscription</button>
+      </Link>
+      
     </div>
   )
 }
